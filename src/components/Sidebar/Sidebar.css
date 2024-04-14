@@ -50,6 +50,10 @@
     background-color: #E2E6EB;
 }
 
+.sidebar .bottom{
+    display: flex;
+    flex-direction: column;
+}
 .sidebar .bottom-item{
     padding-right: 10px;
 }
