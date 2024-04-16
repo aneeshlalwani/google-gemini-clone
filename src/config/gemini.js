@@ -7,7 +7,7 @@ import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/ge
 const MODEL_NAME = "gemini-1.0-pro";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-async function runChat() {
+async function runChat(prompt) {
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
@@ -44,9 +44,9 @@ async function runChat() {
     ],
   });
 
-  const result = await chat.sendMessage("YOUR_USER_INPUT");
+  const result = await chat.sendMessage(prompt);
   const response = result.response;
   console.log(response.text());
 }
 
-runChat();
+export default runChat;
