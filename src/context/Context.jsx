@@ -16,13 +16,23 @@ const ContextProvider = (props) => {
   // state for displaying the result on web page
   const [resultData, setResultData] = useState("");
 
+  const delayPara = (index) => {};
   const onSent = async (prompt) => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
     setRecentPrompt(input);
     const response = await runChat(input);
-    setResultData(response);
+    let responseArray = response.split("**");
+    let newResponse;
+    for (let i = 0; i < responseArray.length; i++) {
+      if (i === 0 || i % 2 !== 1) {
+        newResponse += responseArray[i];
+      } else {
+        newResponse += "<b>" + responseArray[i] + "</b>";
+      }
+    }
+    setResultData(newResponse.split("*").join("</br>"));
     setLoading(false);
     setInput("");
   };
