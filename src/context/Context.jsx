@@ -16,7 +16,12 @@ const ContextProvider = (props) => {
   // state for displaying the result on web page
   const [resultData, setResultData] = useState("");
 
-  const delayPara = (index) => {};
+  // function for typing effect
+  const delayPara = (index, nextWord) => {
+    setTimeout(() => {
+      setResultData((prev) => prev + nextWord);
+    }, 75 * index);
+  };
   const onSent = async (prompt) => {
     setResultData("");
     setLoading(true);
@@ -32,7 +37,13 @@ const ContextProvider = (props) => {
         newResponse += "<b>" + responseArray[i] + "</b>";
       }
     }
-    setResultData(newResponse.split("*").join("</br>"));
+    let newResponseWithLineBreak = newResponse.split("*").join("</br>");
+    let newResponseArray = newResponseWithLineBreak.split(" "); // if there is space, it means there is new word
+
+    for (let i = 0; i < newResponseArray.length; i++) {
+      const nextWord = newResponseArray[i];
+      delayPara(i, nextWord + " ");
+    }
     setLoading(false);
     setInput("");
   };
