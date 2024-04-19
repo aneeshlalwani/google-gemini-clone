@@ -22,6 +22,12 @@ const ContextProvider = (props) => {
       setResultData((prev) => prev + nextWord);
     }, 75 * index);
   };
+
+  // arrow function for new chat creation functionality
+  const newChat = () => {
+    setLoading(false);
+    setShowResult(false);
+  };
   const onSent = async (prompt) => {
     setResultData("");
     setLoading(true);
@@ -69,6 +75,7 @@ const ContextProvider = (props) => {
     loading,
     resultData,
     onSent,
+    newChat,
   };
   return (
     <Context.Provider value={contextValue}>{props.children}</Context.Provider>

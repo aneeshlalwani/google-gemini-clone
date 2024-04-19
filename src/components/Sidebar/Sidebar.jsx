@@ -5,7 +5,7 @@ import { Context } from "../../context/Context";
 
 const Sidebar = () => {
   const [sidebarExtended, setSidebarExtended] = useState(false);
-  const { onSent, prevPrompts, setRecentPrompt } = useContext(Context);
+  const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
 
   const loadPrompt = async (prompt) => {
     setRecentPrompt(prompt);
@@ -21,7 +21,12 @@ const Sidebar = () => {
             alt="MenuIcon"
             onClick={() => setSidebarExtended((previous) => !previous)}
           />
-          <div className="new-chat">
+          <div
+            onClick={() => {
+              newChat();
+            }}
+            className="new-chat"
+          >
             <img src={assets.plus_icon} alt="" />
             {sidebarExtended ? <p>New Chat</p> : null}
           </div>
