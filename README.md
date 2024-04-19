@@ -9,6 +9,6 @@ Google Gemini Clone is a React.js web application that replicates the search int
 
 # How to use
 
-1.  Clone the repo <code>git clone </code>
+1.  Clone the repo <code>git clone https://github.com/aneeshlalwani/google-gemini-clone </code>
 2.  Install required dependencies <code>npm i</code>
 3. Run the server <code>npm run dev</code>
