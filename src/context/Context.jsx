@@ -8,7 +8,7 @@ const ContextProvider = (props) => {
   // state for storing the recent prompts data
   const [recentPrompt, setRecentPrompt] = useState("");
   // state for storing the history of prompts data
-  const [prevPrompt, setPrevPrompt] = useState([]);
+  const [prevPrompts, setPrevPrompts] = useState([]);
   //
   const [showResult, setShowResult] = useState(false);
   // for loading
@@ -26,10 +26,18 @@ const ContextProvider = (props) => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
-    setRecentPrompt(input);
-    const response = await runChat(input);
+    // for displaying results from sidebar prompt and input prompt
+    let response;
+    if (prompt !== undefined) {
+      response = await runChat(prompt);
+      setRecentPrompt(prompt);
+    } else {
+      setPrevPrompts((prev) => [...prev, input]);
+      setRecentPrompt(input);
+      response = await runChat(input);
+    }
     let responseArray = response.split("**");
-    let newResponse;
+    let newResponse = "";
     for (let i = 0; i < responseArray.length; i++) {
       if (i === 0 || i % 2 !== 1) {
         newResponse += responseArray[i];
@@ -55,8 +63,8 @@ const ContextProvider = (props) => {
     setInput,
     recentPrompt,
     setRecentPrompt,
-    prevPrompt,
-    setPrevPrompt,
+    prevPrompts,
+    setPrevPrompts,
     showResult,
     loading,
     resultData,
