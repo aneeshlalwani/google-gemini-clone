@@ -5,16 +5,11 @@ export const Context = createContext();
 
 const ContextProvider = (props) => {
   const [input, setInput] = useState("");
-  // state for storing the recent prompts data
-  const [recentPrompt, setRecentPrompt] = useState("");
-  // state for storing the history of prompts data
-  const [prevPrompts, setPrevPrompts] = useState([]);
-  //
-  const [showResult, setShowResult] = useState(false);
-  // for loading
-  const [loading, setLoading] = useState(false);
-  // state for displaying the result on web page
-  const [resultData, setResultData] = useState("");
+  const [recentPrompt, setRecentPrompt] = useState(""); // storing the recent prompts data
+  const [prevPrompts, setPrevPrompts] = useState([]); // storing the history of prompts data
+  const [showResult, setShowResult] = useState(false); // displaying the result
+  const [loading, setLoading] = useState(false); // for loading
+  const [resultData, setResultData] = useState(""); // displaying the result on web page
 
   // function for typing effect
   const delayPara = (index, nextWord) => {
@@ -32,7 +27,8 @@ const ContextProvider = (props) => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
-    // for displaying results from sidebar prompt and input prompt
+
+    // if Condition for displaying results from sidebar prompt and input prompt
     let response;
     if (prompt !== undefined) {
       response = await runChat(prompt);
@@ -61,6 +57,7 @@ const ContextProvider = (props) => {
     setLoading(false);
     setInput("");
   };
+
   /* Calls onSent immediately with prompt when ContextProvider component is rendered */
   // onSent("What is node.js?");
 
