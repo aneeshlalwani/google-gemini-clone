@@ -81,11 +81,13 @@ const Main = () => {
               <div className="search-box-icon">
                 <img src={assets.gallery_icon} alt="GalleryIcon" />
                 <img src={assets.mic_icon} alt="MicIcon" />
-                <img
-                  onClick={() => onSent()}
-                  src={assets.send_icon}
-                  alt="SendIcon"
-                />
+                {input ? (
+                  <img
+                    onClick={() => onSent()}
+                    src={assets.send_icon}
+                    alt="SendIcon"
+                  />
+                ) : null}
               </div>
             </div>
             <p className="bottom-info">
