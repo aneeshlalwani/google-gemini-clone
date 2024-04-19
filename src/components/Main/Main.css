@@ -34,8 +34,8 @@
 }
 .main .cards{
     display: grid;
-    /* grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); */
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
     gap: 15px;
     padding: 20px;
 }
@@ -156,4 +156,19 @@
     font-size: 17px;
     font-weight: 300;
     line-height: 1.8;
+}
+@media (max-wdith: 600px) {
+    .main-bottom input{
+        flex: none ;
+        width: 150px;
+    }
+    .main-bottom img{
+        width: 20px;
+    }
+    .search-box{
+        padding: 5px 10px;
+    }
+    .search-box div{
+        gap: 5px;
+    }
 }
